@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{#- Get the `tplroot` from `tpldir` #}
+{%- set tplroot = tpldir.split('/')[0] %}
+{#- Start imports as #}
+{%- import_yaml tplroot ~ "/defaults.yaml" as default_settings %}
+
+{% set alcali = salt['pillar.get'](
+        'alcali',
+        default=default_settings.alcali,
+        merge=True
+    )
+%}

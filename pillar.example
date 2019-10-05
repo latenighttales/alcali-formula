@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+alcali:
+  deploy:
+    repository: https://github.com/latenighttales/alcali.git
+    branch: 2019.2
+    user: alcali
+    group: alcali
+    directory: /opt/alcali
+    service: alcali
+    runtime: python3
+  gunicorn:
+    name: 'config.wsgi:application'
+    host: '0.0.0.0'
+    port: 5000
+    workers: {{ grains['num_cpus'] }}
+  # All the items under this section will be converted into an environment file.
+  config:
+    db_backend: mysql
+    db_name: salt
+    db_user: alcali
+    db_password: alcali
+    db_host: db
+    db_port: 3306
+    master_minion_id: master
+    secret_key: 'thisisnotagoodsecret.orisit?'
+    allowed_hosts: '*'
+    salt_url: 'https://master:8080'
+    salt_auth: alcali

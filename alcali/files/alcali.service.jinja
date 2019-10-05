@@ -1,0 +1,15 @@
+[Unit]
+Description={{ service }}
+After=syslog.target network.target
+
+[Service]
+EnvironmentFile={{ directory }}/.env
+SyslogIdentifier={{ service }}
+User={{ user }}
+Group={{ group }}
+ExecStart={{ directory }}/.venv/bin/gunicorn {{ name }} --bind {{ host }}:{{ port }} -w {{ workers }}
+WorkingDirectory={{ directory }}/code
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

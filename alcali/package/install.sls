@@ -9,14 +9,14 @@
 {% set db_connector = 'mysqlclient' %}
 {% set db_requirements = {
     'RedHat': ['mariadb-devel', 'python3-devel'],
-    'Arch': ['libmysqlclient'],
+    'Arch': ['mariadb-libs'],
     'Debian': ['default-libmysqlclient-dev', 'python3-dev'],
 }.get(grains.os_family) %}
 {% elif alcali.config.db_backend == 'postgres' %}
 {% set db_connector = 'psycopg2' %}
 {% set db_requirements = {
     'RedHat': ['libpq-devel', 'python3-devel'],
-    'Arch': ['libmysqlclient'],
+    'Arch': ['postgresql-libs'],
     'Debian': ['libpq-dev', 'python3-dev'],
 }.get(grains.os_family) %}
 {% endif %}
@@ -26,6 +26,10 @@
     'Arch': ['python-virtualenv'],
     'Debian': ['virtualenv', 'python-pip', 'python3-virtualenv', 'python3-venv'],
 }.get(grains.os_family) %}
+
+{% if grains['os'] == 'CentOS' or grains['os'] == 'RedHat' %}
+  {% set venv_requirements = ['python-virtualenv'] %}
+{% endif %}
 
 alcali-package-install-pkg-installed:
   pkg.installed:
@@ -56,7 +60,7 @@ alcali-package-install-virtualenv-managed:
   virtualenv.managed:
     - name: {{ alcali.deploy.directory }}/.venv
     - user: {{ alcali.deploy.user }}
-    {% if grains['os'] == 'Ubuntu' %}
+    {% if grains['os'] == 'Ubuntu' or grains['os'] == 'CentOS' or grains['os'] == 'RedHat' %}
     - python: {{ alcali.deploy.runtime }}
     {% endif %}
     - system_site_packages: False

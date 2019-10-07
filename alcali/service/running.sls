@@ -23,8 +23,6 @@ alcali-file-managed-service-running:
         workers: {{ alcali.gunicorn.workers }}
     - source: salt://alcali/files/alcali.service.jinja
     - template: jinja
-    - require:
-      - virtualenv: virtualenv_created
   module.run:
     - name: service.systemctl_reload
     - onchanges:

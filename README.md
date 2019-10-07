@@ -1,5 +1,8 @@
 # Alcali formula
 
+[![Build Status](https://travis-ci.org/latenighttales/alcali-formula.svg?branch=master)](https://travis-ci.org/latenighttales/alcali-formula)
+
+
 <img align="right" height="300" src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Logo_du_Mois_de_la_contribution_sans_texte.svg">
 
 A SaltStack formula to install and configure [Alcali](https://github.com/latenighttales/alcali).
@@ -7,7 +10,7 @@ A SaltStack formula to install and configure [Alcali](https://github.com/latenig
  Alcali is a web based tool for monitoring and administrating **Saltstack** Salt.
 
 
-**Available states**
+## Available states
 
 - [alcali](#alcali)
 - [alcali.user](#alcaliuser)
@@ -19,6 +22,16 @@ A SaltStack formula to install and configure [Alcali](https://github.com/latenig
 - [alcali.package.clean](#alcalipackageclean)
 - [alcali.config.clean](#alcaliconfigclean)
 - [alcali.service.clean](#alcaliserviceclean)
+
+## Testing
+
+[Requirements](#requirements)
+
+- [bin/kitchen converge](#binkitchen-converge)
+- [bin/kitchen verify](#binkitchen-verify)
+- [bin/kitchen destroy](#binkitchen-destroy)
+- [bin/kitchen test](#binkitchen-test)
+- [bin/kitchen login](#binkitchen-login)
 
 
 ### Alcali
@@ -56,12 +69,46 @@ This state will remove the configuration of the alcali service and has a depende
 ### alcali.package.clean
 This state will remove the alcali package and has a dependency on alcali.config.clean via include list.
 
+## Testing
+
+Linux testing is done with kitchen-salt.
+
+### Requirements
+
+- Ruby
+- Docker
+
+```commandline
+$ gem install bundler
+$ bundle install
+$ bin/kitchen test [platform]
+```
+
+Where [platform] is the platform name defined in kitchen.yml, e.g. debian-9-2019-2-py3.
+
+### bin/kitchen converge
+
+Creates the docker instance and runs the template main state, ready for testing.
+
+### bin/kitchen verify
+
+Runs the inspec tests on the actual instance.
+
+### bin/kitchen destroy
+
+Removes the docker instance.
+
+### bin/kitchen test
+
+Runs all of the stages above in one go: i.e. destroy + converge + verify + destroy.
+
+### bin/kitchen login
+
+Gives you SSH access to the instance for manual testing.
 
 #### TODO:
 
 - Add multiple install options.
-
-- Add tests.
 
 
 

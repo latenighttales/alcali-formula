@@ -18,8 +18,7 @@ env:
     - INSTANCE: default-ubuntu-1804-2019-2-py3
     - INSTANCE: default-arch-base-latest-2019-2-py2
     - INSTANCE: default-fedora-29-2018-3-py2
-    - INSTANCE: default-opensuse-leap-15-2018-3-py2
-    - INSTANCE: centos6-centos-6-2017-7-py2
+    - INSTANCE: default-centos-7-2018-3-py2
 
 script:
   - bin/kitchen verify ${INSTANCE}

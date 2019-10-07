@@ -8,31 +8,41 @@
 {% if alcali.config.db_backend == 'mysql' %}
 {% set db_connector = 'mysqlclient' %}
 {% set db_requirements = {
-    'RedHat': ['mysql-devel', 'python3-devel'],
+    'RedHat': ['mariadb-devel', 'python3-devel'],
+    'Arch': ['libmysqlclient'],
     'Debian': ['default-libmysqlclient-dev', 'python3-dev'],
 }.get(grains.os_family) %}
 {% elif alcali.config.db_backend == 'postgres' %}
 {% set db_connector = 'psycopg2' %}
 {% set db_requirements = {
-    'RedHat': ['mysql-devel', 'python3-devel'],
-    'Debian': ['libpq-devel', 'python3-dev'],
+    'RedHat': ['libpq-devel', 'python3-devel'],
+    'Arch': ['libmysqlclient'],
+    'Debian': ['libpq-dev', 'python3-dev'],
 }.get(grains.os_family) %}
 {% endif %}
+
+{% set venv_requirements = {
+    'RedHat': ['python3-virtualenv'],
+    'Arch': ['python-virtualenv'],
+    'Debian': ['virtualenv', 'python-pip', 'python3-virtualenv', 'python3-venv'],
+}.get(grains.os_family) %}
 
 alcali-package-install-pkg-installed:
   pkg.installed:
     - pkgs:
       - git
       - gcc
-      - virtualenv
-      - python-pip
-      - python3-pip
-      - python3-virtualenv
 
 {% for pkg in db_requirements %}
 {{ pkg }}:
   pkg.installed:
     - name: {{ pkg }}
+{% endfor %}
+
+{% for venv_pkg in venv_requirements %}
+{{ venv_pkg }}:
+  pkg.installed:
+    - name: {{ venv_pkg }}
 {% endfor %}
 
 alcali-package-install-git-latest:
@@ -46,7 +56,9 @@ alcali-package-install-virtualenv-managed:
   virtualenv.managed:
     - name: {{ alcali.deploy.directory }}/.venv
     - user: {{ alcali.deploy.user }}
+    {% if grains['os'] == 'Ubuntu' %}
     - python: {{ alcali.deploy.runtime }}
+    {% endif %}
     - system_site_packages: False
     - requirements: {{ alcali.deploy.directory }}/code/requirements/prod.txt
     - require:

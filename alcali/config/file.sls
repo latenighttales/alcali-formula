@@ -14,7 +14,7 @@ alcali-config-file-file-managed:
     - name: {{ alcali.deploy.directory }}/.env
     - user: {{ alcali.deploy.user }}
     - group: {{ alcali.deploy.group }}
-    - chmod: 0400
+    - mode: 0400
     - contents: |
         # Salt managed configuration
         {%- for entry, value in alcali.config.items() %}

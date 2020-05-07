@@ -24,7 +24,7 @@
 {% set venv_requirements = {
     'RedHat': ['python3-virtualenv'],
     'Arch': ['python-virtualenv'],
-    'Debian': ['virtualenv', 'python-pip', 'python3-virtualenv', 'python3-venv'],
+    'Debian': ['virtualenv', 'python3-pip', 'python3-virtualenv', 'python3-venv'],
 }.get(grains.os_family) %}
 
 {% if grains['os'] == 'CentOS' or grains['os'] == 'RedHat' %}

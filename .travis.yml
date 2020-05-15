@@ -14,11 +14,14 @@ services:
 
 env:
   matrix:
-    - INSTANCE: default-debian-10-develop-py3
+    - INSTANCE: default-debian-10-3000-2-py3
+    - INSTANCE: default-ubuntu-1804-3000-2-py3
     - INSTANCE: default-ubuntu-1804-2019-2-py3
-    - INSTANCE: default-arch-base-latest-2019-2-py2
-    - INSTANCE: default-fedora-29-2018-3-py2
-    - INSTANCE: default-centos-7-2018-3-py2
+    - INSTANCE: default-fedora-31-3000-2-py3
+    - INSTANCE: default-fedora-30-2019-2-py3
+    - INSTANCE: default-centos-7-3000-2-py3
+    - INSTANCE: default-centos-7-2019-2-py3
+    - INSTANCE: default-arch-base-latest-3000-2-py2
 
 script:
   - bin/kitchen verify ${INSTANCE}

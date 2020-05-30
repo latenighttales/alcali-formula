@@ -60,7 +60,9 @@ alcali-package-install-virtualenv-managed:
   virtualenv.managed:
     - name: {{ alcali.deploy.directory }}/.venv
     - user: {{ alcali.deploy.user }}
+    {% if grains['os'] == 'Ubuntu' or grains['os'] == 'CentOS' or grains['os'] == 'RedHat' %}
     - python: {{ alcali.deploy.runtime }}
+    {% endif %}
     - system_site_packages: False
     - requirements: {{ alcali.deploy.directory }}/code/requirements/prod.txt
     - require:

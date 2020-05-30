@@ -20,7 +20,7 @@ alcali:
     db_backend: mysql
     db_name: salt
     db_user: alcali
-    db_password: alcali
+    db_pass: alcali
     db_host: db
     db_port: 3306
     master_minion_id: master

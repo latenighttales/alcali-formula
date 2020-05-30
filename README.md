@@ -110,6 +110,15 @@ Gives you SSH access to the instance for manual testing.
 
 - Add multiple install options.
 
+## Contribute
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+If you like this project, consider donating:
+
+via GitHub Sponsors, or
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J3173F6)
 
 
 <sub><sub>Image: Jean-Philippe WMFr, derivative work : User:Benoit Rochon [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)</sub></sub>

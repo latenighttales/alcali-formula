@@ -21,6 +21,7 @@ alcali-file-managed-service-running:
         host: {{ alcali.gunicorn.host }}
         port: {{ alcali.gunicorn.port }}
         workers: {{ alcali.gunicorn.workers }}
+        worker_timeout: {{ alcali.gunicorn.worker_timeout }}
     - source: salt://alcali/files/alcali.service.jinja
     - template: jinja
   module.run:

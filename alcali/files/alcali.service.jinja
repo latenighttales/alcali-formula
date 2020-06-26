@@ -7,7 +7,7 @@ EnvironmentFile={{ directory }}/.env
 SyslogIdentifier={{ service }}
 User={{ user }}
 Group={{ group }}
-ExecStart={{ directory }}/.venv/bin/gunicorn {{ name }} --bind {{ host }}:{{ port }} -w {{ workers }}
+ExecStart={{ directory }}/.venv/bin/gunicorn {{ name }} --bind {{ host }}:{{ port }} -w {{ workers }} -t {{ worker_timeout }}
 WorkingDirectory={{ directory }}/code
 Restart=always
 

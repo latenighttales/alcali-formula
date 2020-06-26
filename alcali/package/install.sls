@@ -12,7 +12,7 @@
     'Arch': ['mariadb-libs'],
     'Debian': ['default-libmysqlclient-dev', 'python3-dev'],
 }.get(grains.os_family) %}
-{% elif alcali.config.db_backend == 'postgres' %}
+{% elif alcali.config.db_backend == 'postgresql' %}
 {% set db_connector = 'psycopg2' %}
 {% set db_requirements = {
     'RedHat': ['libpq-devel', 'python3-devel'],

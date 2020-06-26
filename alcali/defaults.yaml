@@ -15,6 +15,7 @@ alcali:
     host: '0.0.0.0'
     port: 5000
     workers: {{ grains['num_cpus'] }}
+    worker_timeout: 300
   # All the items under this section will be converted into an environment file.
   config:
     db_backend: mysql

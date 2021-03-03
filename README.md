@@ -1,3 +1,5 @@
+# :warning: THIS FORMULA IS NO LONGER MAINTAINED. PLEASE USE https://github.com/saltstack-formulas/alcali-formula INSTEAD.
+
 # Alcali formula
 
 [![Build Status](https://travis-ci.org/latenighttales/alcali-formula.svg?branch=master)](https://travis-ci.org/latenighttales/alcali-formula)
